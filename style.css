@@ -1,0 +1,16 @@
+.container {
+    display:flex;
+    flex-direction: column;
+}
+
+.buttonRow {
+    display: flex;
+    justify-content: center;
+    width: 150px
+
+}
+
+button {
+    background-color: lightgrey;
+    /* width: 20px; */
+}
