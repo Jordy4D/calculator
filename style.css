@@ -1,16 +1,21 @@
 .container {
     display:flex;
     flex-direction: column;
+    width: 300px;
 }
 
 .buttonRow {
     display: flex;
-    justify-content: center;
-    width: 150px
+    justify-content: space-evenly;
+    align-items: center;
 
 }
 
 button {
     background-color: lightgrey;
-    /* width: 20px; */
+    width: 100%;
+}
+
+#display {
+    background-color: aliceblue;
 }

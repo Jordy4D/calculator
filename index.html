@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
     <title>Jordan's JS Calculator</title>
 </head>
 <body>
 
     <div class="container">
+        <div class="display">
+            <p id="output">12393247</p>
+        </div>
         <div class="buttonRow">
             <button type="" id="7" input="7">7</button>
             <button type="" id="8" input="8">8</button>
@@ -37,6 +40,9 @@
             <button type="" id="=" input="=">=</button>
             <button type="" id="+" input="+">+</button>
 
+        </div>
+        <div class="buttonRow">
+            <button type="" id="clear" onclick="clear()" >Clear</button>
         </div>
         
         
