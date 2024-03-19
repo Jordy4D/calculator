@@ -16,6 +16,20 @@ button {
     width: 100%;
 }
 
-#display {
-    background-color: aliceblue;
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: lightblue;
+    height:50px;
+    padding: 0;
+    padding-right: 6px;
+    margin: 0;
+}
+
+
+
+#output p {
+    padding: 0;
+    margin: 0;
 }

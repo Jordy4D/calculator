@@ -1,5 +1,5 @@
 // DOM selectors
-let display = document.getElementById('output');
+let display = document.querySelector('#output p');
 
 // vars
 let numberA;
@@ -26,28 +26,46 @@ function divide(a, b) {
 
 function operate(a, b, operator) {
 
-
 }
 
 function clear() {
-    display.innerHTML = `${''}`;
+    
 }
 
 
-let btns = document.querySelectorAll("button")
-btns.forEach(function (i) {
+
+
+let numberBtns = document.querySelectorAll('[type=number]')
+let operatorBtns = document.querySelectorAll('[type=operator]')
+let clearBtn = document.querySelector('[type=clear]')
+
+
+// number button click listener
+numberBtns.forEach(function (i) {
     i.addEventListener('click', function() {
         if (!isNaN(i.id)) {
-            display.innerHTML = `${i.id}`;
+            display.innerHTML += `${i.id}`;
             console.log(i.id)
-        } else if (i.id === 'clear') {
-            display.innerHTML = `${''}`;
         } else {
-            display.innerHTML = `${i.id}`;
+            display.innerHTML += `${i.id}`;
             console.log(i.id)
         }
     })
 })
 
+// operator button [need to prevent duplicate entry]
+operatorBtns.forEach(function (i) {
+    i.addEventListener('click', function() {
+            display.innerHTML += `${i.id}`;
+            console.log(i.id)
+        
+        
+    })
+})
 
+
+// clear display
+clearBtn.addEventListener('click', function() {
+    display.innerHTML = `${' '}`;
+})
 
