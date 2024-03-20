@@ -24,7 +24,7 @@ function divide(a, b) {
     return a / b;
 }
 
-function operate(a, b, operator) {
+function operate(a, b) {
 
 }
 
@@ -38,6 +38,8 @@ function clear() {
 let numberBtns = document.querySelectorAll('[type=number]')
 let operatorBtns = document.querySelectorAll('[type=operator]')
 let clearBtn = document.querySelector('[type=clear]')
+let decimalBtn = document.querySelector('[type=decimal]')
+let equalsBtn = document.querySelector('[type=equals]')
 
 
 // number button click listener
@@ -66,6 +68,18 @@ operatorBtns.forEach(function (i) {
 
 // clear display
 clearBtn.addEventListener('click', function() {
-    display.innerHTML = `${' '}`;
+    display.innerHTML = `${''}`;
+})
+
+decimalBtn.addEventListener('click', function() {
+    display.innerHTML += `${'.'}`
+})
+
+equalsBtn.addEventListener('click', function() {
+    let equalsArray = display.innerHTML.split(' ')
+    console.log(equalsArray)
+    console.log('TEST')
+
+
 })
 
