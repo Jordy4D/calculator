@@ -16,25 +16,34 @@ let result;
 
 
 function add(a, b) {
-     result = a + b
+    result = a + b
     console.log(result);
+    display.innerHTML = result;
+    prevNum = result;
 
 }
 
 function subtract(a, b) {
-     result = a - b
+    result = a - b
     console.log(result);
+    display.innerHTML = result;
+    prevNum = result;
 
 }
 
 function multiply(a, b) {
-     result = a * b
+    result = a * b
     console.log(result);
+    display.innerHTML = result;
+    prevNum = result;
+
 }
 
 function divide(a, b) {
-     result = a / b
+    result = a / b
     console.log(result);
+    display.innerHTML = result;
+    prevNum = result;
 }
 
 function operate(prevNum, nextNum, operand) {
@@ -49,7 +58,7 @@ function operate(prevNum, nextNum, operand) {
         return divide(prevNum, nextNum);
     }
 
-    display.innerHTML = operate();
+    // display.innerHTML = operate();
 }
 
 // function clear(display) {
@@ -78,14 +87,14 @@ operandBtns.forEach(function (i) {
     i.addEventListener('click', function() {
         if (prevNum === undefined) {
             prevNum =  display.innerHTML  
-            operand = `${i.input}`;
+            operand = `${i.id}`;
 
         } else {
             nextNum =  display.innerHTML
-
+            operand = `${i.id}`;
         }
         
-        console.log("current operand is " + i.input)
+        console.log("current operand is " + i.id)
         console.log("current prevNum variable is " + prevNum)
         console.log("current nextNum variable is " + nextNum)
         
@@ -108,11 +117,10 @@ decimalBtn.addEventListener('click', function() {
 })
 
 equalsBtn.addEventListener('click', function() {
-
+    nextNum =  display.innerHTML
     operate(prevNum, nextNum, operand)
     let equalsArray = display.innerHTML.split(' ')
     console.log(equalsArray)
-    console.log('TEST')
 
 
 })
