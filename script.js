@@ -1,65 +1,93 @@
 // DOM selectors
 let display = document.querySelector('#output p');
 
-// vars
-let numberA;
-let numberB;
-let operator;
-
-
-
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
-function operate(a, b) {
-
-}
-
-function clear() {
-    
-}
-
-
-
-
 let numberBtns = document.querySelectorAll('[type=number]')
-let operatorBtns = document.querySelectorAll('[type=operator]')
+let operandBtns = document.querySelectorAll('[type=operand]')
 let clearBtn = document.querySelector('[type=clear]')
 let decimalBtn = document.querySelector('[type=decimal]')
 let equalsBtn = document.querySelector('[type=equals]')
+
+// operating variables
+let prevNum;
+let nextNum;
+let operand;
+let decimal;
+let result;
+
+
+function add(a, b) {
+     result = a + b
+    console.log(result);
+
+}
+
+function subtract(a, b) {
+     result = a - b
+    console.log(result);
+
+}
+
+function multiply(a, b) {
+     result = a * b
+    console.log(result);
+}
+
+function divide(a, b) {
+     result = a / b
+    console.log(result);
+}
+
+function operate(prevNum, nextNum, operand) {
+    if (operand === '+') {
+        return add(prevNum, nextNum);
+        
+    } else if ( operand === '-' ) {
+        return subtract(prevNum, nextNum);
+    } else if ( operand === '*' ) {
+        return multiply(prevNum, nextNum);
+    } else if ( operand === '/' ) {
+        return divide(prevNum, nextNum);
+    }
+
+    display.innerHTML = operate();
+}
+
+// function clear(display) {
+//     display.innerHTML = `${''}`;
+// }
+
+
+
+
+
 
 
 // number button click listener
 numberBtns.forEach(function (i) {
     i.addEventListener('click', function() {
-        if (!isNaN(i.id)) {
             display.innerHTML += `${i.id}`;
             console.log(i.id)
-        } else {
-            display.innerHTML += `${i.id}`;
-            console.log(i.id)
-        }
+
+    
+
     })
 })
 
 // operator button [need to prevent duplicate entry]
-operatorBtns.forEach(function (i) {
+operandBtns.forEach(function (i) {
     i.addEventListener('click', function() {
-            display.innerHTML += `${i.id}`;
-            console.log(i.id)
+        if (prevNum === undefined) {
+            prevNum =  display.innerHTML  
+            operand = `${i.input}`;
+
+        } else {
+            nextNum =  display.innerHTML
+
+        }
+        
+        console.log("current operand is " + i.input)
+        console.log("current prevNum variable is " + prevNum)
+        console.log("current nextNum variable is " + nextNum)
         
         
     })
@@ -72,10 +100,16 @@ clearBtn.addEventListener('click', function() {
 })
 
 decimalBtn.addEventListener('click', function() {
-    display.innerHTML += `${'.'}`
+    if (display.innerHTML.includes('.') == false) {
+    
+        display.innerHTML += `${'.'}`;
+        decimal = display.innerHTML;
+    }
 })
 
 equalsBtn.addEventListener('click', function() {
+
+    operate(prevNum, nextNum, operand)
     let equalsArray = display.innerHTML.split(' ')
     console.log(equalsArray)
     console.log('TEST')
