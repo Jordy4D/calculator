@@ -1,25 +1,40 @@
 // DOM selectors
 let display = document.querySelector('#output p');
 
-let numberBtns = document.querySelectorAll('[type=number]')
-let operandBtns = document.querySelectorAll('[type=operand]')
-let clearBtn = document.querySelector('[type=clear]')
-let decimalBtn = document.querySelector('[type=decimal]')
-let equalsBtn = document.querySelector('[type=equals]')
+let buttons = document.querySelectorAll('button')
+
+const numberBtns = document.querySelectorAll('[type=number]')
+const operatorBtns = document.querySelectorAll('[type=operator]')
+const clearBtn = document.querySelector('[type=clear]')
+const decimalBtn = document.querySelector('[type=decimal]')
+const equalsBtn = document.querySelector('[type=equals]')
+
+
+// buttons.forEach(btn => {
+//     btn.addEventListener('click', (e) => {
+//     lastClick = e.target.id
+//     console.log('button test is ' + e.target.id)
+//     console.log('last click is ' + lastClick)
+//     console.log(operator + ' is the operator')
+//     })
+    
+// })
+
 
 // operating variables
-let prevNum;
-let nextNum;
-let operand;
-let decimal;
-let result;
-
+let displayValue = 0
+let firstOperand = null;
+let secondOperand = null;
+let operator = null;
+let decimal = null;
+let result = null;
+let lastClick;
 
 function add(a, b) {
     result = a + b
     console.log(result);
     display.innerHTML = result;
-    prevNum = result;
+    firstOperand = result;
 
 }
 
@@ -27,7 +42,7 @@ function subtract(a, b) {
     result = a - b
     console.log(result);
     display.innerHTML = result;
-    prevNum = result;
+    firstOperand = result;
 
 }
 
@@ -35,7 +50,7 @@ function multiply(a, b) {
     result = a * b
     console.log(result);
     display.innerHTML = result;
-    prevNum = result;
+    firstOperand = result;
 
 }
 
@@ -43,19 +58,19 @@ function divide(a, b) {
     result = a / b
     console.log(result);
     display.innerHTML = result;
-    prevNum = result;
+    firstOperand = result;
 }
 
-function operate(prevNum, nextNum, operand) {
-    if (operand === '+') {
-        return add(prevNum, nextNum);
+function operate(firstOperand, secondOperand, operator) {
+    if (operator === '+') {
+        return add(firstOperand, secondOperand);
         
-    } else if ( operand === '-' ) {
-        return subtract(prevNum, nextNum);
-    } else if ( operand === '*' ) {
-        return multiply(prevNum, nextNum);
-    } else if ( operand === '/' ) {
-        return divide(prevNum, nextNum);
+    } else if ( operator === '-' ) {
+        return subtract(firstOperand, secondOperand);
+    } else if ( operator === '*' ) {
+        return multiply(firstOperand, secondOperand);
+    } else if ( operator === '/' ) {
+        return divide(firstOperand, secondOperand);
     }
 
     // display.innerHTML = operate();
@@ -74,8 +89,14 @@ function operate(prevNum, nextNum, operand) {
 // number button click listener
 numberBtns.forEach(function (i) {
     i.addEventListener('click', function() {
-            display.innerHTML += `${i.id}`;
-            console.log(i.id)
+        // if (lastClick = operator) {
+        //     display.innerHTML = `${''}`;
+        // }
+        display.innerHTML += `${''}`;
+        display.innerHTML += `${i.id}`;
+        console.log(i.id)
+
+        
 
     
 
@@ -83,20 +104,20 @@ numberBtns.forEach(function (i) {
 })
 
 // operator button [need to prevent duplicate entry]
-operandBtns.forEach(function (i) {
+operatorBtns.forEach(function (i) {
     i.addEventListener('click', function() {
-        if (prevNum === undefined) {
-            prevNum =  display.innerHTML  
-            operand = `${i.id}`;
+        if (firstOperand === undefined) {
+            firstOperand = display.innerHTML  
+            operator = `${i.id}`;
 
         } else {
-            nextNum =  display.innerHTML
-            operand = `${i.id}`;
+            secondOperand = display.innerHTML
+            operator = `${i.id}`;
         }
         
-        console.log("current operand is " + i.id)
-        console.log("current prevNum variable is " + prevNum)
-        console.log("current nextNum variable is " + nextNum)
+        console.log("current operator is " + i.id)
+        console.log("current firstOperand variable is " + firstOperand)
+        console.log("current secondOperand variable is " + secondOperand)
         
         
     })
@@ -105,8 +126,15 @@ operandBtns.forEach(function (i) {
 
 // clear display
 clearBtn.addEventListener('click', function() {
-    display.innerHTML = `${''}`;
+    display.innerHTML = `${''}`
+    // displayValue = 0
+    // firstOperand = null;
+    // secondOperand = null;
+    // operator = null;
+    // decimal = null;
+    // result = null;
 })
+
 
 decimalBtn.addEventListener('click', function() {
     if (display.innerHTML.includes('.') == false) {
@@ -117,11 +145,11 @@ decimalBtn.addEventListener('click', function() {
 })
 
 equalsBtn.addEventListener('click', function() {
-    nextNum =  display.innerHTML
-    operate(prevNum, nextNum, operand)
+    secondOperand = display.innerHTML
+    operate(firstOperand, secondOperand, operator)
     let equalsArray = display.innerHTML.split(' ')
     console.log(equalsArray)
-
+    secondOperand = '';
 
 })
 
